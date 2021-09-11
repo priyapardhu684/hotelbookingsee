@@ -49,4 +49,32 @@ footer {
     margin-left: 2%;
 }
 #social-media-images {
-    margin-r…
+    margin-right: 2%;
+}
+#copyright-text {
+    font-size: 10px;
+}
+.hotel-name-rating {
+    padding: 3% 3% !important;
+}
+.heading {
+    font-family: cursive !important;
+    margin-top: 1%;
+}
+#login-form {
+    display: flex;
+    flex-direction: column;
+}
+.login-field {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 2%;
+}
+#login-button {
+    margin: auto;
+}
+.checked {
+    color: orange;
+}
+
