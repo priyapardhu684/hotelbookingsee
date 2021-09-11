@@ -1,91 +1,100 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en" xml:lang="en">
     <head>
-        <title>List</title>
-        <link rel="stylesheet" href="styles/detail.css">
-        <link rel="stylesheet" href="styles/list.css">
-        <link rel="stylesheet" href="styles/common.css">
-        
-        <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
-
-    </head>
-    <body>  
-
-        <header>
-            <a href="index.html"><img src="assests/images/logo.png" height="60px" width="60px" alt="logo"/></a>
-            <a href="login.html">Login</a>
-        </header>
-
-<body>
-     
-    <div id="container">
-    <!-- <head>
+        <meta content="text/html"; charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Detail</title>
-        <link rel="stylesheet" href="styles/detail.css">
-    </head> -->
-    
+        
+        <!-- Import CSS -->
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="styles/loader.css">
+        <link rel="stylesheet" href="styles/common.css">
+        <link rel="stylesheet" href="styles/detail.css">   
+    </head>
     <body>
-       
-        <header>
-            <a href="index.html"><img src="assests/images/logo.png" height="60px" width="60px" alt="logo"/></a>
-            <a href="login.html">Login</a>
-        </header>
+        <div id="loader"></div>
+        <div class="main-container">
+            <!-- Added the header elements: Logo and Login Button -->
+            <header class="header-footer" id="header"></header>
 
-        <div class="content">
+            <!-- Content Div -->
+            <div id="detail-container">
+                <div id="slideshow-booking">
+                    <div id="slideshow-container">
+                        <div id="carousel-controls" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner" id="carousel-parent"></div>
+                            <a class="carousel-control-prev" href="#carousel-controls" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carousel-controls" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div>
 
-            <div class="poolside">
-                <img src="https://media-cdn.tripadvisor.com/media/photo-w/17/b3/09/b4/by-the-poolside.jpg"
-                    height="500px" width="500px">
-            </div>
-            <div class="booknow">
-                <form action="payment.html" method="get">
-                    <label for="adults">Adults:</label>
-                    <input type="number" id="adults" name="adults" min="1" max="5" required><br>
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" required><br>
-                    <label for="fromdate">From Date:</label>
-                    <input type="date" id="fromdate" name="fromdate" required><br>
-                    <label for="todate">To Date:</label>
-                    <input type="date" id="todate" name="todate" required><br>
-                    <label for="total">Total:</label>
-                    <input type="number" id="total"  name="total" readonly><br>
-                    <a href="payment.html"><button   id="login">Book Now</button></a>
-                </form>
-            </div>
-            <div class="description">
-                <h2>Redisson Blu Hotel</h2>
-                <p>RATING</p>
-                <p>5 Star</p>
-                <h4>AMENITIES</h4>
-                <ul>
-                    <li>Room service</li>
-                    <li>Restaurant</li>
-                    <li>Business centre</li>
-                    <li>Fitness centre</li>
-                    <li>Pool</li>
-                </ul>
-                <h5>DESCRIPTION</h5>
+                    <!-- Added the Booking Form with all the relevant fields required -->
+                    <div id="booking-form">
+                        <form action="payment.html" method="get" autocomplete="off">
+                            <div class="outer">
+                                <label for="adult">Adults:</label>
+                                <input class="inner" type="number" name="adult" id="adult" value="1" min="1" oninput="updatePrice()" required/>
+                            </div>
 
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae laudantium fugiat praesentium, facere
-                    quod odio ex eos, ea explicabo eaque esse, non ab animi quisquam provident velit sapiente itaque
-                    molestias?</p>
+                            <div class="outer">
+                                <label for="name">Name:</label>
+                                <input class="inner" type="text" name="name" id="name" required/>
+                            </div>
+
+                            <div class="outer">
+                                <label for="fromDate">From Date:</label>
+                                <input class="inner" type="date" name="fromDate" id="fromDate" oninput="updatePrice()" required/>
+                            </div>
+
+                            <div class="outer">
+                                <label for="toDate">To Date:</label>
+                                <input class="inner" type="date" name="toDate" id="toDate" oninput="updatePrice()" required/>
+                            </div>
+
+                            <div class="outer">
+                                <label for="price">Total:</label>
+                                <input class="inner" type="text" name="price" id="price" readonly/>
+                                <input class="inner" type="hidden" id="id" name="id">
+                            </div>
+
+                            <div>
+                                <input type="submit" class="btn btn-outline-success" value="Book Now" id="book-now"/>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div id="hotel-description">
+                    <h2 id="hotel-name"></h2>
+                    <h5 class="heading">RATING</h5>
+                    <div id="rating">
+                        <span class="fa fa-star checked" id="1"></span>
+                        <span class="fa fa-star checked" id="2"></span>
+                        <span class="fa fa-star checked" id="3"></span>
+                        <span class="fa fa-star checked" id="4"></span>
+                        <span class="fa fa-star checked" id="5"></span>
+                    </div>
+                    <h5 class="heading">AMENITIES</h5>
+                    <ul id="amenities"></ul>
+                    <h5 class="heading" id="description">DESCRIPTION</h5>
+                </div>
             </div>
+
+            <!-- Added the footer elements: Contact Us Button, Social Media Links -->
+            <footer class="header-footer" id="footer"></footer>
         </div>
 
-        <footer>
-            <div id="contact">
-                <a href="contact.html">Contact Us</a>
-            </div>
-            <div id="mid">
-                <a href="https://www.facebook.com" target="_blank"><img src="/assests/images/facebook.png" height="20px" width="22px"/></a>
-                <a href="https://www.instagram.com" target="_blank"><img src="/assests/images/instagram.png" height="20px" width="22px"/></a>
-                <a href="https://twitter.com" target="_blank"><img src="/assests/images/twitter.png" height="20px" width="22px"/></a>
-            </div>
-            <div id="copy_right">
-                <p> © 2020 ROOM SEARCH PVT. LTD. </p>
-            </div>
-        </footer>
-    </div>
-</body>
-
+        <script src="scripts/common.js"></script>
+        <script src="scripts/detail.js"></script>
+    </body>
 </html>
